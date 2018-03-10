@@ -26,32 +26,40 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            to_exchange.println(("ADD 7 BOND BUY 997 50" ).toUpperCase());
-            to_exchange.println(("ADD 77 BOND SELL 1003 50" ).toUpperCase());
+            to_exchange.println(("ADD 7 BOND BUY 998 50" ).toUpperCase());
+            to_exchange.println(("ADD 77 BOND SELL 1002 50" ).toUpperCase());
             int counter = 0;
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
             while((reply = from_exchange.readLine())!=null)
             {
-                if(reply.equalsIgnoreCase("ACK 7"))
+                switch(reply.toUpperCase())
                 {
-                    currentBondBuyLists += 50;
-                    System.out.println("________________________________________");
-                }
-                else if(reply.equalsIgnoreCase("ACK 77"))
-                {
-                    currentBondSellLists += 50;
+                    case "ACK 7":
+                        currentBondBuyLists += 50;
+                        break;
+
+                    case "ACK 77":
+                        currentBondSellLists += 50;
+                        break;
+
+                    case "OUT 7":
+                        currentBondBuyLists = 0;
+                        break;
+
+                    case "OUT 77":
+                        currentBondSellLists =0;
                 }
 
                 System.err.printf("The exchange replied: %s\n", reply);
                 reply = from_exchange.readLine().trim();
                 if(currentBondBuyLists <= 0 && counter > 30)
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 997 50" ).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 998 50" ).toUpperCase());
                 }
                 else if(currentBondSellLists <= 0 &&  counter > 30)
                 {
-                    to_exchange.println(("ADD 77 BOND SELL 1003 50" ).toUpperCase());
+                    to_exchange.println(("ADD 77 BOND SELL 1002 50" ).toUpperCase());
                 }
             counter++;
             }
