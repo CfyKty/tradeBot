@@ -26,8 +26,6 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
-            to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
 
             int counter = 0;
             int currentBondBuyLists = 0;
@@ -37,6 +35,7 @@ public class Bot
                 if(reply.equalsIgnoreCase("ACK 7"))
                 {
                     currentBondBuyLists += 50;
+                    System.out.println("________________________________________");
                 }
                 else if(reply.equalsIgnoreCase("ACK 77"))
                 {
@@ -45,15 +44,15 @@ public class Bot
 
                 System.err.printf("The exchange replied: %s\n", reply);
                 reply = from_exchange.readLine().trim();
-                if(currentBondBuyLists <= 0 && counter > 15)
+                if(currentBondBuyLists <= 0 && counter > 30)
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 997 50" ).toUpperCase());
                 }
-                else if(currentBondSellLists <= 0 &&  counter > 15)
+                else if(currentBondSellLists <= 0 &&  counter > 30)
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
+                    to_exchange.println(("ADD 77 BOND SELL 1003 50" ).toUpperCase());
                 }
-
+            counter++;
             }
         }
         catch (Exception e)
