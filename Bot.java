@@ -115,6 +115,8 @@ public class Bot
                             System.out.println("MS Sell OUT");
                             break;
 
+
+
                         case "REJECT 2 LIMIT:POSITION":
                             to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
                             System.out.println("Converting Vale");
@@ -140,13 +142,11 @@ public class Bot
                                     to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))) + " 2").toUpperCase());
                                     System.out.println("Buying VALE @ "+reply.substring(14, 18));
 
-                                }
+                                }}
 
-
-                                switch (reply.toUpperCase().substring(0, 10)) {
+                                switch (reply.toUpperCase().substring(0, 9)) {
                                     case "BOOK VALBZ":
-
-                                        to_exchange.println(("ADD 2 VALBZ SELL " + (Integer.parseInt(reply.substring(15, 19))) + " 2").toUpperCase());
+                                        to_exchange.println(("ADD 2 VALBZ SELL " + reply.substring(15, 19) + " 2").toUpperCase());
                                         System.out.println("Selling VLABZ!!! @ "+reply.substring(15, 19));
 
                                 }
@@ -197,7 +197,7 @@ public class Bot
                             counter++;
                     }
                 }
-            }
+
         catch (Exception e)
         {
             e.printStackTrace(System.out);
