@@ -23,14 +23,23 @@ public class Bot
               exponential explosion in pending messages. Please, don't do that!
             */
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
-            to_exchange.println(("ADD 7 BOND BUY 998 50" + config.team_name).toUpperCase());
-            to_exchange.println(("ADD 7 BOND SELL 1002 50" + config.team_name).toUpperCase());
             String reply;
-
+            int counter = 0;
             while((reply = from_exchange.readLine())!=null)
             {
                 System.err.printf("The exchange replied: %s\n", reply);
                 reply = from_exchange.readLine().trim();
+                if(counter<30)
+                {
+                    counter++;
+                }
+                else
+                {
+                    to_exchange.println(("ADD 7 BOND BUY 998 50" + config.team_name).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND SELL 1002 50" + config.team_name).toUpperCase());
+                    counter = 0;
+                }
+
             }
         }
         catch (Exception e)
