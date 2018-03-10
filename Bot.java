@@ -32,11 +32,11 @@ public class Bot
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
             int currentVALEBuyLists = 0;
-            int totalVALE =0;
-            int currentGSBuyLists =0;
-            int currentGSSellLists =0;
-            int currentMSBuyLists =0;
-            int currentMSSellLists =0;
+            int totalVALE = 0;
+            int currentGSBuyLists = 0;
+            int currentGSSellLists = 0;
+            int currentMSBuyLists = 0;
+            int currentMSSellLists = 0;
 
 
                 while ((reply = from_exchange.readLine()) != null) {
@@ -61,6 +61,7 @@ public class Bot
                             currentGSBuyLists += 2;
                             System.out.println("GS Buy ACK");
                             break;
+
                         case "ACK 33":
                             currentGSSellLists += 2;
                             System.out.println("GS Sell ACK");
@@ -84,6 +85,7 @@ public class Bot
                             currentBondSellLists = 0;
                             System.out.println("BOND SELL OUT");
                             break;
+
                         case "OUT 2":
                             currentVALEBuyLists = 0;
                             System.out.println("VALE Buy OUT");
@@ -110,12 +112,11 @@ public class Bot
                             currentMSBuyLists = 0;
                             System.out.println("MS Buy OUT");
                             break;
+
                         case "OUT 44":
                             currentMSSellLists = 0;
                             System.out.println("MS Sell OUT");
                             break;
-
-
 
                         case "REJECT 2 LIMIT:POSITION":
                             to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
@@ -134,12 +135,13 @@ public class Bot
                                 else
                                 System.out.println(reply);
                     }
+
                     if (reply.toUpperCase().length() > 10)
                     {
                         switch (reply.toUpperCase().substring(0, 9)) {
                             case "BOOK VALE":
                                 if (currentVALEBuyLists <= 0 && counter > 35) {
-                                    to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))) + " 2").toUpperCase());
+                                    to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))-2) + " 2").toUpperCase());
                                     System.out.println("Buying VALE @ "+reply.substring(14, 18));
 
                                 }}
@@ -147,7 +149,7 @@ public class Bot
                                 switch (reply.toUpperCase().substring(0, 9)) {
                                     case "BOOK VALBZ":
                                         to_exchange.println(("ADD 2 VALBZ SELL " + reply.substring(15, 19) + " 2").toUpperCase());
-                                        System.out.println("Selling VLABZ!!! @ "+reply.substring(15, 19));
+                                        System.out.println("Selling VALBZ!!! @ " + reply.substring(15, 19));
 
                                 }
                     }
