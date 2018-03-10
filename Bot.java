@@ -65,6 +65,12 @@ public class Bot
                     case "OUT 77":
                         currentBondSellLists = 0;
                         break;
+                    case "OUT 2":
+                        currentVALBZBuyLists =0;
+                        break;
+                    case "OUT 22":
+                        currentVALBZSellLists =0;
+                        break;
 
                     case "REJECT 77 DUPLICATE_ORDER_ID":
                         counter = 0;
@@ -83,16 +89,14 @@ public class Bot
                 {
                     case "BOOK VALBZ":
                         //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                        if(currentBondBuyLists <= 0) {
+                        if(currentVALBZBuyLists <= 0&& counter > 35 && currentVALBZSellLists <=0) {
                             to_exchange.println(("ADD 2 VALBZ BUY " + reply.substring(15, 19) + " 2").toUpperCase());
                             System.out.println(reply.substring(15, 19));
-                            currentVALBZBuyLists += 2;
                             for(int x = 0; x< reply.length();x++)
                             {
                                 if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
                                 {
                                     to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(x+5, x+9) + " 2").toUpperCase());
-                                    currentVALBZSellLists += 2;
                                     System.out.println(reply.substring(x+5,x+9));
                                     break;
                                 }
