@@ -155,6 +155,7 @@ public class Bot
                                     if (VALBZ) {
                                         to_exchange.println(("ADD 2 VALBZ SELL " + (Integer.parseInt(reply.substring(15, 19))) + " 10").toUpperCase());
                                         System.out.println("Selling VLABZ!!! @ "+reply.substring(15, 19));
+                                        VALBZ = false;
 
                                     }}
 
