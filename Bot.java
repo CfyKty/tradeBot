@@ -151,7 +151,7 @@ public class Bot
                     }
 
 
-                            System.out.println(reply.toUpperCase().substring(0, 7));
+                            System.out.println(reply.toUpperCase());
                             switch (reply.toUpperCase().substring(0, 7)) {
                                 case "BOOK GS":
                                     if (currentGSBuyLists <= 0 && counter > 35) {
