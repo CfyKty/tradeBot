@@ -26,8 +26,8 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            to_exchange.println(("ADD 7 BOND BUY 998 50" ).toUpperCase());
-            to_exchange.println(("ADD 77 BOND SELL 1002 50" ).toUpperCase());
+            to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
+            to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
             int counter = 0;
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
@@ -55,11 +55,11 @@ public class Bot
                 reply = from_exchange.readLine().trim();
                 if(currentBondBuyLists <= 0 && counter > 30)
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 998 50" ).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
                 }
                 else if(currentBondSellLists <= 0 &&  counter > 30)
                 {
-                    to_exchange.println(("ADD 77 BOND SELL 1002 50" ).toUpperCase());
+                    to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
                 }
             counter++;
             }
