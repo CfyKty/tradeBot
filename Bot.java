@@ -117,6 +117,9 @@ public class Bot
                         case "REJECT 7 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
+                        case "CLOSE":
+                            Thread.sleep(3000);
+                            break;
                     }
                     if (reply.toUpperCase().length() < 10) {
                         reply = from_exchange.readLine();
