@@ -34,6 +34,7 @@ public class Bot
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
             int currentVALEBuyLists = 0;
+            int totalVALE =0;
             int currentVALESellLists = 0;
             int currentGSBuyLists =0;
             int currentGSSellLists =0;
@@ -41,92 +42,92 @@ public class Bot
             int currentMSSellLists =0;
 
 
-            int VALBZ_estimatedValue;
-            while((reply = from_exchange.readLine())!=null)
-            {
-                System.err.printf("The exchange replied: %s\n", reply);
-                switch(reply.toUpperCase())
-                {
-                    case "ACK 7":
-                        currentBondBuyLists += 50;
-                        break;
+                int VALBZ_estimatedValue;
+                while ((reply = from_exchange.readLine()) != null) {
+                    System.err.printf("The exchange replied: %s\n", reply);
+                    switch (reply.toUpperCase()) {
+                        case "ACK 7":
+                            currentBondBuyLists += 50;
+                            break;
 
-                    case "ACK 77":
-                        currentBondSellLists += 50;
-                        break;
+                        case "ACK 77":
+                            currentBondSellLists += 50;
+                            break;
 
-                    case "ACK 2":
-                        currentVALEBuyLists += 2;
-                        break;
+                        case "ACK 2":
+                            currentVALEBuyLists += 2;
+                            break;
 
-                    case "ACK 22":
-                        currentVALESellLists += 2;
-                        break;
+                        case "ACK 22":
+                            currentVALESellLists += 2;
+                            break;
 
-                    case "ACK 3":
-                        currentGSBuyLists +=2;
-                        break;
-                    case "ACK 33":
-                        currentGSSellLists +=2;
+                        case "ACK 3":
+                            currentGSBuyLists += 2;
+                            break;
+                        case "ACK 33":
+                            currentGSSellLists += 2;
 
-                    case "ACK 4":
-                        currentMSBuyLists +=2;
-                        break;
+                        case "ACK 4":
+                            currentMSBuyLists += 2;
+                            break;
 
-                    case "ACK 44":
-                        currentMSSellLists +=2;
-                        break;
+                        case "ACK 44":
+                            currentMSSellLists += 2;
+                            break;
 
-                    case "OUT 7":
-                        currentBondBuyLists = 0;
-                        break;
+                        case "OUT 7":
+                            currentBondBuyLists = 0;
+                            break;
 
-                    case "OUT 77":
-                        currentBondSellLists = 0;
-                        break;
-                    case "OUT 2":
-                        currentVALEBuyLists =0;
-                        break;
-                    case "OUT 22":
-                        currentVALESellLists =0;
-                        break;
+                        case "OUT 77":
+                            currentBondSellLists = 0;
+                            break;
+                        case "OUT 2":
+                            currentVALEBuyLists = 0;
+                            totalVALE += 2;
+                            if (totalVALE >= 15) {
+                                to_exchange.println(("CONVERT 32 VALE BUY 15 ").toUpperCase());
+                            }
+                            break;
+                        case "OUT 22":
+                            currentVALESellLists = 0;
+                            break;
 
 
-                    case "OUT 3":
-                        currentGSBuyLists =0;
-                        break;
+                        case "OUT 3":
+                            currentGSBuyLists = 0;
+                            break;
 
-                    case "OUT 33":
-                        currentGSSellLists =0;
-                        break;
+                        case "OUT 33":
+                            currentGSSellLists = 0;
+                            break;
 
-                    case "OUT 4":
-                        currentMSBuyLists =0;
-                        break;
-                    case "OUT 44":
-                        currentMSSellLists =0;
+                        case "OUT 4":
+                            currentMSBuyLists = 0;
+                            break;
+                        case "OUT 44":
+                            currentMSSellLists = 0;
 
-                    case "REJECT 77 DUPLICATE_ORDER_ID":
-                        counter = 0;
-                        break;
+                        case "REJECT 77 DUPLICATE_ORDER_ID":
+                            counter = 0;
+                            break;
 
-                    case "REJECT 7 DUPLICATE_ORDER_ID":
-                        counter = 0;
-                        break;
-                }
-                if(reply.toUpperCase().length() < 10 )
-                {
-                    reply = from_exchange.readLine();
-                }
+                        case "REJECT 7 DUPLICATE_ORDER_ID":
+                            counter = 0;
+                            break;
+                    }
+                    if (reply.toUpperCase().length() < 10) {
+                        reply = from_exchange.readLine();
+                    }
 
-                switch(reply.toUpperCase().substring(0,9))
-                {
-                    case "BOOK VALE":
-                        //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                        if(currentVALEBuyLists <= 0&& counter > 35 && currentVALESellLists <=0) {
-                            to_exchange.println(("ADD 2 VALE BUY " + ((Integer.parseInt(reply.substring(14, 18))) -1 )+ " 2").toUpperCase());
-                            System.out.println(reply.substring(15, 19));
-                            for(int x = 0; x< reply.length();x++)
+                    switch (reply.toUpperCase().substring(0, 9)) {
+                        case "BOOK VALE":
+                            //VALBZ_estimatedValue = (int)reply.substring(15,19);
+                            if (currentVALEBuyLists <= 0 && counter > 35) {
+                                to_exchange.println(("ADD 2 VALE BUY " + ((Integer.parseInt(reply.substring(14, 18))) - 1) + " 2").toUpperCase());
+                                System.out.println(reply.substring(15, 19));
+                           /* for(int x = 0; x< reply.length();x++)
                             {
                                 if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
                                 {
@@ -137,61 +138,53 @@ public class Bot
                             }
 
                             break;
-                        }
-                }
-
-                switch(reply.toUpperCase().substring(0,7))
-                {
-                    case "BOOK GS":
-                        //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                        if(currentGSBuyLists <= 0&& counter > 35 && currentGSSellLists <=0) {
-                            to_exchange.println(("ADD 3 GS BUY " + ((Integer.parseInt(reply.substring(12, 16))) -1 )+ " 2").toUpperCase());
-                            System.out.println(reply.substring(15, 19));
-                            for(int x = 0; x< reply.length();x++)
-                            {
-                                if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
-                                {
-                                    to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + " 2").toUpperCase());
-                                    System.out.println(reply.substring(x+5,x+9));
-                                    break;
-                                }
+                        }*/
                             }
 
-                            break;
-                        }
+                            switch (reply.toUpperCase().substring(0, 7)) {
+                                case "BOOK GS":
+                                    //VALBZ_estimatedValue = (int)reply.substring(15,19);
+                                    if (currentGSBuyLists <= 0 && counter > 35 && currentGSSellLists <= 0) {
+                                        to_exchange.println(("ADD 3 GS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
+                                        System.out.println(reply.substring(15, 19));
+                                        for (int x = 0; x < reply.length(); x++) {
+                                            if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
+                                                to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9)) + 1) + " 2").toUpperCase());
+                                                System.out.println(reply.substring(x + 5, x + 9));
+                                                break;
+                                            }
+                                        }
 
-                    case "BOOK MS":
-                        //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                        if(currentMSBuyLists <= 0&& counter > 35 && currentMSSellLists <=0) {
-                            to_exchange.println(("ADD 4 MS BUY " + ((Integer.parseInt(reply.substring(12, 16))) -1 )+ " 2").toUpperCase());
-                            System.out.println(reply.substring(15, 19));
-                            for(int x = 0; x< reply.length();x++)
-                            {
-                                if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
-                                {
-                                    to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + " 2").toUpperCase());
-                                    System.out.println(reply.substring(x+5,x+9));
-                                    break;
-                                }
+                                        break;
+                                    }
+
+                                case "BOOK MS":
+                                    //VALBZ_estimatedValue = (int)reply.substring(15,19);
+                                    if (currentMSBuyLists <= 0 && counter > 35 && currentMSSellLists <= 0) {
+                                        to_exchange.println(("ADD 4 MS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
+                                        System.out.println(reply.substring(15, 19));
+                                        for (int x = 0; x < reply.length(); x++) {
+                                            if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
+                                                to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9)) + 1) + " 2").toUpperCase());
+                                                System.out.println(reply.substring(x + 5, x + 9));
+                                                break;
+                                            }
+                                        }
+
+                                        break;
+                                    }
                             }
 
-                            break;
-                        }
-                }
 
-
-
-                if(currentBondBuyLists <= 0 && counter > 35)
-                {
-                    to_exchange.println(("ADD 7 BOND BUY 999 30" ).toUpperCase());
+                            if (currentBondBuyLists <= 0 && counter > 35) {
+                                to_exchange.println(("ADD 7 BOND BUY 999 30").toUpperCase());
+                            } else if (currentBondSellLists <= 0 && counter > 35) {
+                                to_exchange.println(("ADD 77 BOND SELL 1001 30").toUpperCase());
+                            }
+                            counter++;
+                    }
                 }
-                else if(currentBondSellLists <= 0 &&  counter > 35)
-                {
-                    to_exchange.println(("ADD 77 BOND SELL 1001 30" ).toUpperCase());
-                }
-            counter++;
             }
-        }
         catch (Exception e)
         {
             e.printStackTrace(System.out);
