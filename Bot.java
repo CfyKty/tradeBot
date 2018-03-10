@@ -93,6 +93,7 @@ public class Bot
                             if (totalVALE >= 10) {
                                 to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
                                 System.out.println("Converting Vale");
+                                totalVALE =0;
                             }
                             break;
 
@@ -121,6 +122,12 @@ public class Bot
 
                         case "REJECT 7 DUPLICATE_ORDER_ID":
                             counter = 0;
+                            break;
+
+                        case "REJECT 2 LIMIT:POSITION":
+                            to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
+                            System.out.println("Converting Vale");
+                            totalVALE =0;
                             break;
 
                         case "CLOSE":
