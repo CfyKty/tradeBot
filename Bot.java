@@ -9,7 +9,7 @@ public class Bot
     {
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
-        Configuration config = new Configuration(false);
+        Configuration config = new Configuration(true);
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
@@ -24,13 +24,14 @@ public class Bot
             */
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             to_exchange.println(("ADD 7 BOND BUY 998 50" + config.team_name).toUpperCase());
-            to_exchange.println(("ADD 7 BOND sell 1002 50" + config.team_name).toUpperCase());
-            String reply = from_exchange.readLine().trim();
-            System.err.printf("The exchange replied: %s\n", reply);
-            reply = from_exchange.readLine().trim();
-            System.err.printf("The exchange replied: %s\n", reply);
-            reply = from_exchange.readLine().trim();
-            System.err.printf("The exchange replied: %s\n", reply);
+            to_exchange.println(("ADD 7 BOND SELL 1002 50" + config.team_name).toUpperCase());
+            String reply;
+
+            while((reply = from_exchange.readLine())!=null)
+            {
+                System.err.printf("The exchange replied: %s\n", reply);
+                reply = from_exchange.readLine().trim();
+            }
         }
         catch (Exception e)
         {
