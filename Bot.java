@@ -35,6 +35,9 @@ public class Bot
             int currentBondSellLists = 0;
             int currentVALEBuyLists = 0;
             int currentVALESellLists = 0;
+            int currentGSBuyLists =0;
+            int currentGSSellLists =0;
+
 
             int VALBZ_estimatedValue;
             while((reply = from_exchange.readLine())!=null)
@@ -58,6 +61,12 @@ public class Bot
                         currentVALESellLists += 2;
                         break;
 
+                    case "ACK 3":
+                        currentGSBuyLists +=2;
+                        break;
+                    case "ACK 33":
+                        currentGSSellLists +=2;
+
                     case "OUT 7":
                         currentBondBuyLists = 0;
                         break;
@@ -70,6 +79,14 @@ public class Bot
                         break;
                     case "OUT 22":
                         currentVALESellLists =0;
+                        break;
+
+                    case "OUT 3":
+                        currentGSBuyLists =0;
+                        break;
+
+                    case "OUT 33":
+                        currentGSSellLists =0;
                         break;
 
                     case "REJECT 77 DUPLICATE_ORDER_ID":
@@ -97,6 +114,27 @@ public class Bot
                                 if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
                                 {
                                     to_exchange.println(("ADD 22 VALE SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + " 2").toUpperCase());
+                                    System.out.println(reply.substring(x+5,x+9));
+                                    break;
+                                }
+                            }
+
+                            break;
+                        }
+                }
+
+                switch(reply.toUpperCase().substring(0,7))
+                {
+                    case "BOOK GS":
+                        //VALBZ_estimatedValue = (int)reply.substring(15,19);
+                        if(currentGSBuyLists <= 0&& counter > 35 && currentGSSellLists <=0) {
+                            to_exchange.println(("ADD 3 GS BUY " + ((Integer.parseInt(reply.substring(12, 16))) -1 )+ " 2").toUpperCase());
+                            System.out.println(reply.substring(15, 19));
+                            for(int x = 0; x< reply.length();x++)
+                            {
+                                if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
+                                {
+                                    to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + " 2").toUpperCase());
                                     System.out.println(reply.substring(x+5,x+9));
                                     break;
                                 }
