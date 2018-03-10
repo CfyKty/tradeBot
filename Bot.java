@@ -87,9 +87,9 @@ public class Bot
                             {
                                 if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
                                 {
-                                    to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(x, x+4) + " 2").toUpperCase());
+                                    to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(x+5, x+8) + " 2").toUpperCase());
                                     currentVALBZSellLists += 2;
-                                    System.out.println(reply.substring(x,x+4));
+                                    System.out.println(reply.substring(x+4,x+8));
                                     break;
                                 }
                             }
