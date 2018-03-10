@@ -146,7 +146,7 @@ public class Bot
                                         System.out.println(reply.substring(15, 19));
                                         for (int x = 0; x < reply.length(); x++) {
                                             if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
-                                                to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9)) + 1) + " 2").toUpperCase());
+                                                to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
                                                 System.out.println(reply.substring(x + 5, x + 9));
                                                 break;
                                             }
