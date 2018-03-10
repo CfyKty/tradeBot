@@ -185,7 +185,7 @@ public class Bot
 
                             if (currentBondBuyLists <= 0 && counter > 35) {
                                 to_exchange.println(("ADD 7 BOND BUY 999 10").toUpperCase());
-                                System.out.println("Buyinggg BOND @ 999");
+                                System.out.println("Buying BOND @ 999");
                             } else if (currentBondSellLists <= 0 && counter > 35) {
                                 to_exchange.println(("ADD 77 BOND SELL 1001 10").toUpperCase());
                                 System.out.println("Selling BOND @ 1001");
