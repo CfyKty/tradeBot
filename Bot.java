@@ -9,7 +9,7 @@ public class Bot
     {
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
-        Configuration config = new Configuration(true);
+        Configuration config = new Configuration(false);
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
@@ -35,8 +35,8 @@ public class Bot
                 }
                 else
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 998 50" + config.team_name).toUpperCase());
-                    to_exchange.println(("ADD 7 BOND SELL 1002 50" + config.team_name).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 998 10" + config.team_name).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND SELL 1002 10" + config.team_name).toUpperCase());
                     counter = 0;
                 }
 
