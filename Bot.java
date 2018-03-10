@@ -123,13 +123,11 @@ public class Bot
                             counter = 0;
                             break;
 
-                        case "REJECT 2 LIMIT:POSITION":
-
                         case "CLOSE":
                             Thread.sleep(3000);
                             break;
                             default:
-                                if(reply.substring(0, 4).equalsIgnoreCase("BOOK"))
+                                if(reply.substring(0, 4).equalsIgnoreCase("BOOK")|| reply.substring(0, 4).equalsIgnoreCase("TRADE"))
                                 {
 
                                 }
@@ -158,8 +156,7 @@ public class Bot
 
                             switch (reply.toUpperCase().substring(0, 7)) {
                                 case "BOOK GS":
-                                    //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                                    if (currentGSBuyLists <= 0 && counter > 35 && currentGSSellLists <= 0) {
+                                    if (currentGSBuyLists <= 0 && counter > 35) {
                                         to_exchange.println(("ADD 3 GS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
                                         System.out.println("Buying GS @ "+reply.substring(15, 19));
                                         for (int x = 0; x < reply.length(); x++) {
@@ -174,8 +171,7 @@ public class Bot
                                     }
 
                                 case "BOOK MS":
-                                    //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                                    if (currentMSBuyLists <= 0 && counter > 35 && currentMSSellLists <= 0) {
+                                    if (currentMSBuyLists <= 0 && counter > 35) {
                                         to_exchange.println(("ADD 4 MS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
                                         System.out.println("Buying MS @ "+reply.substring(15, 19));
                                         for (int x = 0; x < reply.length(); x++) {
