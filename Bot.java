@@ -39,7 +39,6 @@ public class Bot
             int VALBZ_estimatedValue;
             while((reply = from_exchange.readLine())!=null)
             {
-                System.err.printf("The exchange replied: %s\n", reply);
                 switch(reply.toUpperCase())
                 {
                     case "ACK 7":
@@ -50,20 +49,12 @@ public class Bot
                         currentBondSellLists += 50;
                         break;
 
-                    case "ACK 2":
-                        currentVALBZBuyLists += 2;
-                        break;
-
-                    case "ACK 22":
-                        currentVALBZSellLists += 2;
-                        break;
-
                     case "OUT 7":
                         currentBondBuyLists = 0;
                         break;
 
                     case "OUT 77":
-                        currentBondSellLists = 0;
+                        currentBondSellLists =0;
                         break;
 
                     case "REJECT 77 DUPLICATE_ORDER_ID":
@@ -79,19 +70,12 @@ public class Bot
                 {
                     case "BOOK VALBZ":
                         //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                        if(currentBondBuyLists <= 0) {
-                            to_exchange.println(("ADD 2 VALBZ BUY " + reply.substring(15, 19) + " 2").toUpperCase());
-                            System.out.println(reply.substring(15, 19));
-                            currentVALBZBuyLists += 2;
-                            to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(69, 73) + " 2").toUpperCase());
-                            currentVALBZSellLists += 2;
-                            System.out.println(reply.substring(69, 73));
-                            break;
-                        }
+
+                        break;
                 }
 
 
-
+                System.err.printf("The exchange replied: %s\n", reply);
                 if(currentBondBuyLists <= 0 && counter > 35)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
