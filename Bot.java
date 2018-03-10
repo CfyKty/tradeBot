@@ -90,7 +90,7 @@ public class Bot
                             totalVALE += 2;
                             System.out.println("totalVale :"+totalVALE);
                             if (totalVALE >= 10) {
-                                to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
+                                to_exchange.println(("CONVERT 10 VALBZ BUY 10").toUpperCase());
                                 System.out.println("Converting Vale");
                             }
                             break;
@@ -124,6 +124,8 @@ public class Bot
                         case "CLOSE":
                             Thread.sleep(3000);
                             break;
+                            default:
+                                System.out.println(reply);
                     }
                     if (reply.toUpperCase().length() < 10) {
                         reply = from_exchange.readLine();
@@ -133,7 +135,7 @@ public class Bot
                         case "BOOK VALE":
                             if (currentVALEBuyLists <= 0 && counter > 35) {
                                 to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))+1) + " 2").toUpperCase());
-                                System.out.println("Buying VALE @ "+reply.substring(15, 19));
+                                System.out.println("Buying VALE @ "+reply.substring(14, 18));
 
                             }
 
@@ -145,7 +147,7 @@ public class Bot
                                         System.out.println("Buying GS @ "+reply.substring(15, 19));
                                         for (int x = 0; x < reply.length(); x++) {
                                             if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
-                                                to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9)) + 1) + " 2").toUpperCase());
+                                                to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
                                                 System.out.println("Selling GS @"+reply.substring(x + 5, x + 9));
                                                 break;
                                             }
