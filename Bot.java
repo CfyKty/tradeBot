@@ -43,7 +43,6 @@ public class Bot
 
 
 
-                int VALBZ_estimatedValue;
                 while ((reply = from_exchange.readLine()) != null) {
                     System.err.printf("The exchange replied: %s\n", reply);
                     switch (reply.toUpperCase()) {
@@ -131,18 +130,18 @@ public class Bot
                             if (currentVALEBuyLists <= 0 && counter > 35) {
                                 to_exchange.println(("ADD 2 VALE BUY " + ((reply.substring(14, 18))) + " 2").toUpperCase());
                                 System.out.println(reply.substring(15, 19));
-                           /* for(int x = 0; x< reply.length();x++)
+                           for(int x = 0; x< reply.length();x++)
                             {
                                 if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
                                 {
-                                    to_exchange.println(("ADD 22 VALE SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + " 2").toUpperCase());
+                                    to_exchange.println(("ADD 22 VALE SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + "1").toUpperCase());
                                     System.out.println(reply.substring(x+5,x+9));
                                     break;
                                 }
                             }
 
                             break;
-                        }*/
+
                             }
 
                             switch (reply.toUpperCase().substring(0, 7)) {
