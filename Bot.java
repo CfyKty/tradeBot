@@ -42,16 +42,17 @@ public class Bot
             int currentMSSellLists =0;
 
 
+
                 int VALBZ_estimatedValue;
                 while ((reply = from_exchange.readLine()) != null) {
                     System.err.printf("The exchange replied: %s\n", reply);
                     switch (reply.toUpperCase()) {
                         case "ACK 7":
-                            currentBondBuyLists += 50;
+                            currentBondBuyLists += 30;
                             break;
 
                         case "ACK 77":
-                            currentBondSellLists += 50;
+                            currentBondSellLists += 30;
                             break;
 
                         case "ACK 2":
@@ -125,7 +126,7 @@ public class Bot
                         case "BOOK VALE":
                             //VALBZ_estimatedValue = (int)reply.substring(15,19);
                             if (currentVALEBuyLists <= 0 && counter > 35) {
-                                to_exchange.println(("ADD 2 VALE BUY " + ((Integer.parseInt(reply.substring(14, 18))) - 1) + " 2").toUpperCase());
+                                to_exchange.println(("ADD 2 VALE BUY " + ((reply.substring(14, 18))) + " 2").toUpperCase());
                                 System.out.println(reply.substring(15, 19));
                            /* for(int x = 0; x< reply.length();x++)
                             {
