@@ -49,6 +49,15 @@ public class Bot
 
                     case "OUT 77":
                         currentBondSellLists =0;
+                        break;
+
+                    case "REJECT 77 DUPLICATE_ORDER_ID":
+                        counter = 0;
+                        break;
+
+                    case "REJECT 7 DUPLICATE_ORDER_ID":
+                        counter = 0;
+                        break;
                 }
 
                 System.err.printf("The exchange replied: %s\n", reply);
