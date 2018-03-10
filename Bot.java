@@ -145,7 +145,7 @@ public class Bot
                     switch (reply.toUpperCase().substring(0, 9)) {
                         case "BOOK VALE":
                             if (currentVALEBuyLists <= 0 && counter > 35) {
-                                to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))+1) + " 2").toUpperCase());
+                                to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))) + " 2").toUpperCase());
                                 System.out.println("Buying VALE @ "+reply.substring(14, 18));
 
                             }
