@@ -33,8 +33,8 @@ public class Bot
             int counter = 0;
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
-            int currentVALBZBuyLists = 0;
-            int currentVALBZSellLists = 0;
+            int currentVALEBuyLists = 0;
+            int currentVALESellLists = 0;
 
             int VALBZ_estimatedValue;
             while((reply = from_exchange.readLine())!=null)
@@ -51,11 +51,11 @@ public class Bot
                         break;
 
                     case "ACK 2":
-                        currentVALBZBuyLists += 2;
+                        currentVALEBuyLists += 2;
                         break;
 
                     case "ACK 22":
-                        currentVALBZSellLists += 2;
+                        currentVALESellLists += 2;
                         break;
 
                     case "OUT 7":
@@ -66,10 +66,10 @@ public class Bot
                         currentBondSellLists = 0;
                         break;
                     case "OUT 2":
-                        currentVALBZBuyLists =0;
+                        currentVALEBuyLists =0;
                         break;
                     case "OUT 22":
-                        currentVALBZSellLists =0;
+                        currentVALESellLists =0;
                         break;
 
                     case "REJECT 77 DUPLICATE_ORDER_ID":
@@ -85,18 +85,18 @@ public class Bot
                     reply = from_exchange.readLine();
                 }
 
-                switch(reply.toUpperCase().substring(0,10))
+                switch(reply.toUpperCase().substring(0,9))
                 {
-                    case "BOOK VALBZ":
+                    case "BOOK VALE":
                         //VALBZ_estimatedValue = (int)reply.substring(15,19);
-                        if(currentVALBZBuyLists <= 0&& counter > 35 && currentVALBZSellLists <=0) {
-                            to_exchange.println(("ADD 2 VALBZ BUY " + reply.substring(15, 19) + " 2").toUpperCase());
+                        if(currentVALEBuyLists <= 0&& counter > 35 && currentVALESellLists <=0) {
+                            to_exchange.println(("ADD 2 VALE BUY " + reply.substring(14, 18) + " 2").toUpperCase());
                             System.out.println(reply.substring(15, 19));
                             for(int x = 0; x< reply.length();x++)
                             {
                                 if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
                                 {
-                                    to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(x+5, x+9) + " 2").toUpperCase());
+                                    to_exchange.println(("ADD 22 VALE SELL " + reply.substring(x+5, x+9) + " 2").toUpperCase());
                                     System.out.println(reply.substring(x+5,x+9));
                                     break;
                                 }
