@@ -39,6 +39,7 @@ public class Bot
             int VALBZ_estimatedValue;
             while((reply = from_exchange.readLine())!=null)
             {
+                System.err.printf("The exchange replied: %s\n", reply);
                 switch(reply.toUpperCase())
                 {
                     case "ACK 7":
@@ -90,7 +91,7 @@ public class Bot
                 }
 
 
-                System.err.printf("The exchange replied: %s\n", reply);
+
                 if(currentBondBuyLists <= 0 && counter > 35)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
