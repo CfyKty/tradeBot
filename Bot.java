@@ -79,7 +79,7 @@ public class Bot
                         case "OUT 2":
                             currentVALEBuyLists = 0;
                             totalVALE += 2;
-                            if (totalVALE >= 15) {
+                            if (totalVALE >= 10) {
                                 to_exchange.println(("CONVERT 32 VALE BUY 15 ").toUpperCase());
                             }
                             break;
@@ -97,11 +97,12 @@ public class Bot
                             break;
                         case "OUT 44":
                             currentMSSellLists = 0;
+                            break;
 
                         case "REJECT 77 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
-//
+
                         case "REJECT 7 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
