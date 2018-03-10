@@ -28,6 +28,8 @@ public class Bot
             System.err.printf("The exchange replied: %s\n", reply);
             to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
             to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
+            to_exchange.println(("ADD 6 BOND BUY 998 30" ).toUpperCase());
+            to_exchange.println(("ADD 66 BOND SELL 1000 30" ).toUpperCase());
             int counter = 0;
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
