@@ -33,6 +33,8 @@ public class Bot
             int counter = 0;
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
+            int currentVALBZBuyLists = 0;
+            int currentVALBZSellLists = 0;
 
             int VALBZ_estimatedValue;
             while((reply = from_exchange.readLine())!=null)
@@ -62,17 +64,23 @@ public class Bot
                     case "REJECT 7 DUPLICATE_ORDER_ID":
                         counter = 0;
                         break;
-
-
-
                 }
 
+                switch(reply.toUpperCase().substring(0,10))
+                {
+                    case "BOOK VALBZ":
+                        //VALBZ_estimatedValue = (int)reply.substring(15,19);
+
+                        break;
+                }
+
+
                 System.err.printf("The exchange replied: %s\n", reply);
-                if(currentBondBuyLists <= 0 && counter > 30)
+                if(currentBondBuyLists <= 0 && counter > 35)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
                 }
-                else if(currentBondSellLists <= 0 &&  counter > 30)
+                else if(currentBondSellLists <= 0 &&  counter > 35)
                 {
                     to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
                 }
