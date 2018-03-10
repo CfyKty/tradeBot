@@ -83,9 +83,17 @@ public class Bot
                             to_exchange.println(("ADD 2 VALBZ BUY " + reply.substring(15, 19) + " 2").toUpperCase());
                             System.out.println(reply.substring(15, 19));
                             currentVALBZBuyLists += 2;
-                            to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(69, 73) + " 2").toUpperCase());
-                            currentVALBZSellLists += 2;
-                            System.out.println(reply.substring(69, 73));
+                            for(int x = 0; x< reply.length();x++)
+                            {
+                                if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
+                                {
+                                    to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(x, x+4) + " 2").toUpperCase());
+                                    currentVALBZSellLists += 2;
+                                    System.out.println(reply.substring(x,x+4));
+                                    break;
+                                }
+                            }
+
                             break;
                         }
                 }
