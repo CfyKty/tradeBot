@@ -33,7 +33,6 @@ public class Bot
             int currentBondSellLists = 0;
             int currentVALEBuyLists = 0;
             int totalVALE =0;
-            int currentValbz_price;
             int currentGSBuyLists =0;
             int currentGSSellLists =0;
             int currentMSBuyLists =0;
@@ -116,14 +115,6 @@ public class Bot
                             System.out.println("MS Sell OUT");
                             break;
 
-                        case "REJECT 77 DUPLICATE_ORDER_ID":
-                            counter = 0;
-                            break;
-
-                        case "REJECT 7 DUPLICATE_ORDER_ID":
-                            counter = 0;
-                            break;
-
                         case "REJECT 2 LIMIT:POSITION":
                             to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
                             System.out.println("Converting Vale");
@@ -151,10 +142,11 @@ public class Bot
 
                                 }
 
+
                                 switch (reply.toUpperCase().substring(0, 10)) {
                                     case "BOOK VALBZ":
 
-                                        to_exchange.println(("ADD 2 VALBZ SELL " + (Integer.parseInt(reply.substring(15, 19))) + " 10").toUpperCase());
+                                        to_exchange.println(("ADD 2 VALBZ SELL " + (Integer.parseInt(reply.substring(15, 19))) + " 2").toUpperCase());
                                         System.out.println("Selling VLABZ!!! @ "+reply.substring(15, 19));
 
                                 }
