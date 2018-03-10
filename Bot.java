@@ -125,6 +125,11 @@ public class Bot
                             Thread.sleep(3000);
                             break;
                             default:
+                                if(reply.substring(0, 4).equalsIgnoreCase("BOOK"))
+                                {
+
+                                }
+                                else
                                 System.out.println(reply);
                     }
                     if (reply.toUpperCase().length() < 10) {
