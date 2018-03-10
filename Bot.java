@@ -124,6 +124,8 @@ public class Bot
                         case "CLOSE":
                             Thread.sleep(3000);
                             break;
+                            default:
+                                System.out.println(reply);
                     }
                     if (reply.toUpperCase().length() < 10) {
                         reply = from_exchange.readLine();
@@ -145,7 +147,7 @@ public class Bot
                                         System.out.println("Buying GS @ "+reply.substring(15, 19));
                                         for (int x = 0; x < reply.length(); x++) {
                                             if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
-                                                to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9)) + 1) + " 2").toUpperCase());
+                                                to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
                                                 System.out.println("Selling GS @"+reply.substring(x + 5, x + 9));
                                                 break;
                                             }
