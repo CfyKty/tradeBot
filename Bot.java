@@ -134,25 +134,26 @@ public class Bot
                                 else
                                 System.out.println(reply);
                     }
-                    if (reply.toUpperCase().length() < 10) {
-                        reply = from_exchange.readLine();
-                    }
+                    if (reply.toUpperCase().length() > 10)
+                    {
+                        switch (reply.toUpperCase().substring(0, 9)) {
+                            case "BOOK VALE":
+                                if (currentVALEBuyLists <= 0 && counter > 35) {
+                                    to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))) + " 2").toUpperCase());
+                                    System.out.println("Buying VALE @ "+reply.substring(14, 18));
 
-                    switch (reply.toUpperCase().substring(0, 9)) {
-                        case "BOOK VALE":
-                            if (currentVALEBuyLists <= 0 && counter > 35) {
-                                to_exchange.println(("ADD 2 VALE BUY " + (Integer.parseInt(reply.substring(14, 18))) + " 2").toUpperCase());
-                                System.out.println("Buying VALE @ "+reply.substring(14, 18));
+                                }
 
-                            }
-
-                            switch (reply.toUpperCase().substring(0, 10)) {
-                                case "BOOK VALBZ":
+                                switch (reply.toUpperCase().substring(0, 10)) {
+                                    case "BOOK VALBZ":
 
                                         to_exchange.println(("ADD 2 VALBZ SELL " + (Integer.parseInt(reply.substring(15, 19))) + " 10").toUpperCase());
                                         System.out.println("Selling VLABZ!!! @ "+reply.substring(15, 19));
 
-                                    }
+                                }
+                    }
+
+
                             System.out.println(reply.substring(0,7));
                             switch (reply.toUpperCase().substring(0, 7)) {
                                 case "BOOK GS":
