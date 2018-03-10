@@ -27,6 +27,10 @@ public class Bot
             to_exchange.println(("ADD 7 BOND sell 1002 50" + config.team_name).toUpperCase());
             String reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
+            reply = from_exchange.readLine().trim();
+            System.err.printf("The exchange replied: %s\n", reply);
+            reply = from_exchange.readLine().trim();
+            System.err.printf("The exchange replied: %s\n", reply);
         }
         catch (Exception e)
         {
