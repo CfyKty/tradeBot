@@ -26,8 +26,8 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
-            to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
+            to_exchange.println(("ADD 7 BOND BUY 999 30" ).toUpperCase());
+            to_exchange.println(("ADD 77 BOND SELL 1001 30" ).toUpperCase());
             to_exchange.println(("ADD 6 BOND BUY 998 30" ).toUpperCase());
             to_exchange.println(("ADD 66 BOND SELL 1002 30" ).toUpperCase());
             int counter = 0;
@@ -37,6 +37,8 @@ public class Bot
             int currentVALESellLists = 0;
             int currentGSBuyLists =0;
             int currentGSSellLists =0;
+            int currentMSBuyLists =0;
+            int currentMSSellLists =0;
 
 
             int VALBZ_estimatedValue;
@@ -67,6 +69,14 @@ public class Bot
                     case "ACK 33":
                         currentGSSellLists +=2;
 
+                    case "ACK 4":
+                        currentMSBuyLists +=2;
+                        break;
+
+                    case "ACK 44":
+                        currentMSSellLists +=2;
+                        break;
+
                     case "OUT 7":
                         currentBondBuyLists = 0;
                         break;
@@ -81,6 +91,7 @@ public class Bot
                         currentVALESellLists =0;
                         break;
 
+
                     case "OUT 3":
                         currentGSBuyLists =0;
                         break;
@@ -88,6 +99,12 @@ public class Bot
                     case "OUT 33":
                         currentGSSellLists =0;
                         break;
+
+                    case "OUT 4":
+                        currentMSBuyLists =0;
+                        break;
+                    case "OUT 44":
+                        currentMSSellLists =0;
 
                     case "REJECT 77 DUPLICATE_ORDER_ID":
                         counter = 0;
@@ -142,17 +159,35 @@ public class Bot
 
                             break;
                         }
+
+                    case "BOOK MS":
+                        //VALBZ_estimatedValue = (int)reply.substring(15,19);
+                        if(currentMSBuyLists <= 0&& counter > 35 && currentMSSellLists <=0) {
+                            to_exchange.println(("ADD 4 MS BUY " + ((Integer.parseInt(reply.substring(12, 16))) -1 )+ " 2").toUpperCase());
+                            System.out.println(reply.substring(15, 19));
+                            for(int x = 0; x< reply.length();x++)
+                            {
+                                if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
+                                {
+                                    to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x+5, x+9))+1) + " 2").toUpperCase());
+                                    System.out.println(reply.substring(x+5,x+9));
+                                    break;
+                                }
+                            }
+
+                            break;
+                        }
                 }
 
 
 
                 if(currentBondBuyLists <= 0 && counter > 35)
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 999 30" ).toUpperCase());
                 }
                 else if(currentBondSellLists <= 0 &&  counter > 35)
                 {
-                    to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
+                    to_exchange.println(("ADD 77 BOND SELL 1001 30" ).toUpperCase());
                 }
             counter++;
             }
