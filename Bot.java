@@ -80,7 +80,7 @@ public class Bot
                             currentVALEBuyLists = 0;
                             totalVALE += 2;
                             if (totalVALE >= 10) {
-                                to_exchange.println(("CONVERT 32 VALE BUY 15 ").toUpperCase());
+                                to_exchange.println(("CONVERT 10 VALE BUY 10").toUpperCase());
                             }
                             break;
 
