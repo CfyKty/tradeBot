@@ -51,7 +51,7 @@ public class Bot
                 }
                 else if(currentBondSellLists <= 0 &&  counter > 30)
                 {
-                    to_exchange.println(("ADD 7 BOND SELL 1003 50" ).toUpperCase())
+                    to_exchange.println(("ADD 7 BOND SELL 1003 50" ).toUpperCase());
                 }
             counter++;
             }
