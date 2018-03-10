@@ -90,8 +90,9 @@ public class Bot
                             totalVALE += 2;
                             System.out.println("totalVale :"+totalVALE);
                             if (totalVALE >= 10) {
-                                to_exchange.println(("CONVERT 10 VALBZ BUY 10").toUpperCase());
+                                to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
                                 System.out.println("Converting Vale");
+
                             }
                             break;
 
@@ -130,8 +131,7 @@ public class Bot
                             default:
                                 if(reply.substring(0, 4).equalsIgnoreCase("BOOK"))
                                 {
-                                    to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
-                                    System.out.println("Converting buy  Vale");
+
                                 }
                                 else
                                 System.out.println(reply);
