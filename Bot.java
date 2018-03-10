@@ -121,13 +121,17 @@ public class Bot
                         case "REJECT 7 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
+
+                        case "REJECT 2 LIMIT:POSITION":
+
                         case "CLOSE":
                             Thread.sleep(3000);
                             break;
                             default:
                                 if(reply.substring(0, 4).equalsIgnoreCase("BOOK"))
                                 {
-
+                                    to_exchange.println(("CONVERT 10 VALBZ BUY 10").toUpperCase());
+                                    System.out.println("Converting Vale");
                                 }
                                 else
                                 System.out.println(reply);
