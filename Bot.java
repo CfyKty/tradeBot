@@ -103,7 +103,7 @@ public class Bot
                         case "REJECT 77 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
-
+//
                         case "REJECT 7 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
