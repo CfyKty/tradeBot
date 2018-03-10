@@ -9,7 +9,7 @@ public class Bot
     {
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
-        Configuration config = new Configuration(false);
+        Configuration config = new Configuration(true);
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
@@ -79,8 +79,8 @@ public class Bot
                         case "OUT 2":
                             currentVALEBuyLists = 0;
                             totalVALE += 2;
-                            if (totalVALE >= 15) {
-                                to_exchange.println(("CONVERT 32 VALE BUY 15 ").toUpperCase());
+                            if (totalVALE >= 10) {
+                                to_exchange.println(("CONVERT 10 VALE BUY 10").toUpperCase());
                             }
                             break;
 
@@ -97,11 +97,12 @@ public class Bot
                             break;
                         case "OUT 44":
                             currentMSSellLists = 0;
+                            break;
 
                         case "REJECT 77 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
-//
+
                         case "REJECT 7 DUPLICATE_ORDER_ID":
                             counter = 0;
                             break;
@@ -145,7 +146,7 @@ public class Bot
                                         System.out.println(reply.substring(15, 19));
                                         for (int x = 0; x < reply.length(); x++) {
                                             if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
-                                                to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9)) + 1) + " 2").toUpperCase());
+                                                to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
                                                 System.out.println(reply.substring(x + 5, x + 9));
                                                 break;
                                             }
