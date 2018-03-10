@@ -74,6 +74,10 @@ public class Bot
                         counter = 0;
                         break;
                 }
+                if(reply.toUpperCase().length() < 10 )
+                {
+                    reply = from_exchange.readLine();
+                }
 
                 switch(reply.toUpperCase().substring(0,10))
                 {
