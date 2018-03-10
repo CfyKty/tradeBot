@@ -39,6 +39,7 @@ public class Bot
             int VALBZ_estimatedValue;
             while((reply = from_exchange.readLine())!=null)
             {
+                System.err.printf("The exchange replied: %s\n", reply);
                 switch(reply.toUpperCase())
                 {
                     case "ACK 7":
@@ -49,12 +50,26 @@ public class Bot
                         currentBondSellLists += 50;
                         break;
 
+                    case "ACK 2":
+                        currentVALBZBuyLists += 2;
+                        break;
+
+                    case "ACK 22":
+                        currentVALBZSellLists += 2;
+                        break;
+
                     case "OUT 7":
                         currentBondBuyLists = 0;
                         break;
 
                     case "OUT 77":
-                        currentBondSellLists =0;
+                        currentBondSellLists = 0;
+                        break;
+                    case "OUT 2":
+                        currentVALBZBuyLists =0;
+                        break;
+                    case "OUT 22":
+                        currentVALBZSellLists =0;
                         break;
 
                     case "REJECT 77 DUPLICATE_ORDER_ID":
@@ -65,17 +80,34 @@ public class Bot
                         counter = 0;
                         break;
                 }
+                if(reply.toUpperCase().length() < 10 )
+                {
+                    reply = from_exchange.readLine();
+                }
 
                 switch(reply.toUpperCase().substring(0,10))
                 {
                     case "BOOK VALBZ":
                         //VALBZ_estimatedValue = (int)reply.substring(15,19);
+                        if(currentVALBZBuyLists <= 0&& counter > 35 && currentVALBZSellLists <=0) {
+                            to_exchange.println(("ADD 2 VALBZ BUY " + reply.substring(15, 19) + " 2").toUpperCase());
+                            System.out.println(reply.substring(15, 19));
+                            for(int x = 0; x< reply.length();x++)
+                            {
+                                if(reply.substring(x,x+4).equalsIgnoreCase("sell"))
+                                {
+                                    to_exchange.println(("ADD 22 VALBZ SELL " + reply.substring(x+5, x+9) + " 2").toUpperCase());
+                                    System.out.println(reply.substring(x+5,x+9));
+                                    break;
+                                }
+                            }
 
-                        break;
+                            break;
+                        }
                 }
 
 
-                System.err.printf("The exchange replied: %s\n", reply);
+
                 if(currentBondBuyLists <= 0 && counter > 35)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
