@@ -131,7 +131,9 @@ public class Bot
                                 if(reply.substring(0, 4).equalsIgnoreCase("BOOK"))
                                 {
                                     to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
-                                    System.out.println("Converting Vale");
+                                    System.out.println("Converting sell Vale");
+                                    to_exchange.println(("CONVERT 10 VALE BUY 10").toUpperCase());
+                                    System.out.println("Converting buy  Vale");
                                 }
                                 else
                                 System.out.println(reply);
