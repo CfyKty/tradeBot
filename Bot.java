@@ -35,8 +35,8 @@ public class Bot
                 }
                 else
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 998 10" + config.team_name).toUpperCase());
-                    to_exchange.println(("ADD 7 BOND SELL 1002 10" + config.team_name).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 998 50" + config.team_name).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND SELL 1002 50" + config.team_name).toUpperCase());
                     counter = 0;
                 }
 
