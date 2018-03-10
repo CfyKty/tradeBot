@@ -9,7 +9,7 @@ public class Bot
     {
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
-        Configuration config = new Configuration(false);
+        Configuration config = new Configuration(true);
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
