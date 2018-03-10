@@ -5,16 +5,36 @@ import java.net.Socket;
 
 public class Bot
 {
+
+    public static Configuration class_config;
+    public static Socket class_skt;
+    public static BufferedReader class_from_exchange;
+    public static PrintWriter class_to_exchange;
+    public static String class_reply;
+    public static int class_counter;
+    public static int class_currentBondBuyLists;
+    public static int class_currentBondSellLists;
+    public static int class_currentVALEBuyLists;
+    public static int class_currentVALESellLists;
+    public static int class_currentGSBuyLists;
+    public static int class_currentGSSellLists;
+
+
     public static void main(String[] args)
     {
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
         Configuration config = new Configuration(false);
+        class_config = config;
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
+            class_skt = skt;
             BufferedReader from_exchange = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+            class_from_exchange = from_exchange;
             PrintWriter to_exchange = new PrintWriter(skt.getOutputStream(), true);
+            class_to_exchange = to_exchange;
+
 
             /*
               A common mistake people make is to to_exchange.println() > 1
@@ -23,20 +43,30 @@ public class Bot
               exponential explosion in pending messages. Please, don't do that!
             */
             String reply;
+
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             reply = from_exchange.readLine().trim();
+            class_reply = reply;
             System.err.printf("The exchange replied: %s\n", reply);
             to_exchange.println(("ADD 7 BOND BUY 999 50" ).toUpperCase());
             to_exchange.println(("ADD 77 BOND SELL 1001 50" ).toUpperCase());
             to_exchange.println(("ADD 6 BOND BUY 998 30" ).toUpperCase());
             to_exchange.println(("ADD 66 BOND SELL 1002 30" ).toUpperCase());
             int counter = 0;
+            class_counter = counter;
             int currentBondBuyLists = 0;
+            class_currentBondBuyLists = currentBondBuyLists;
             int currentBondSellLists = 0;
+            class_currentBondSellLists = currentBondSellLists;
             int currentVALEBuyLists = 0;
+            class_currentVALEBuyLists = currentVALEBuyLists;
             int currentVALESellLists = 0;
+            class_currentVALESellLists = currentVALESellLists;
             int currentGSBuyLists =0;
+            class_currentGSBuyLists = currentGSBuyLists;
             int currentGSSellLists =0;
+            class_currentGSSellLists = currentGSSellLists;
+
 
 
             int VALBZ_estimatedValue;
@@ -142,6 +172,8 @@ public class Bot
 
                             break;
                         }
+
+
                 }
 
 
