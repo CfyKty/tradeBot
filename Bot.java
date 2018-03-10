@@ -29,7 +29,7 @@ public class Bot
             {
                 System.err.printf("The exchange replied: %s\n", reply);
                 reply = from_exchange.readLine().trim();
-                if(counter<30)
+                if(counter<35)
                 {
                     counter++;
                 }
