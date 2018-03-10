@@ -22,8 +22,13 @@ public class Bot
               Since many write messages generate marketdata, this will cause an
               exponential explosion in pending messages. Please, don't do that!
             */
-            to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             String reply;
+            to_exchange.println(("HELLO " + config.team_name).toUpperCase());
+            reply = from_exchange.readLine().trim();
+            System.err.printf("The exchange replied: %s\n", reply);
+            to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
+            to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
+
             int counter = 0;
             int currentBondBuyLists = 0;
             int currentBondSellLists = 0;
@@ -40,13 +45,13 @@ public class Bot
 
                 System.err.printf("The exchange replied: %s\n", reply);
                 reply = from_exchange.readLine().trim();
-                if(currentBondBuyLists <=0)
+                if(currentBondBuyLists <= 0 && counter > 5)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
                 }
-                else if(currentBondSellLists <=0)
+                else if(currentBondSellLists <= 0 &&  counter > 5)
                 {
-                    to_exchange.println(("ADD 77 BOND SELL 1002 50").toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
                 }
 
             }
