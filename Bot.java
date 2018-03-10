@@ -150,39 +150,39 @@ public class Bot
                                 }
                     }
 
-
-                            System.out.println(reply.toUpperCase());
-                            switch (reply.toUpperCase().substring(0, 7)) {
-                                case "BOOK GS":
-                                    if (currentGSBuyLists <= 0 && counter > 35) {
-                                        to_exchange.println(("ADD 3 GS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
-                                        System.out.println("Buying GS @ "+reply.substring(15, 19));
-                                        for (int x = 0; x < reply.length(); x++) {
-                                            if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
-                                                to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
-                                                System.out.println("Selling GS @"+reply.substring(x + 5, x + 9));
-                                                break;
-                                            }
+                    if (reply.toUpperCase().length() > 10) {
+                        switch (reply.toUpperCase().substring(0, 7)) {
+                            case "BOOK GS":
+                                if (currentGSBuyLists <= 0 && counter > 35) {
+                                    to_exchange.println(("ADD 3 GS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
+                                    System.out.println("Buying GS @ " + reply.substring(15, 19));
+                                    for (int x = 0; x < reply.length(); x++) {
+                                        if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
+                                            to_exchange.println(("ADD 33 GS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
+                                            System.out.println("Selling GS @" + reply.substring(x + 5, x + 9));
+                                            break;
                                         }
-
-                                        break;
                                     }
 
-                                case "BOOK MS":
-                                    if (currentMSBuyLists <= 0 && counter > 35) {
-                                        to_exchange.println(("ADD 4 MS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
-                                        System.out.println("Buying MS @ "+reply.substring(15, 19));
-                                        for (int x = 0; x < reply.length(); x++) {
-                                            if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
-                                                to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
-                                                System.out.println("Selling MS @ "+reply.substring(x + 5, x + 9));
-                                                break;
-                                            }
-                                        }
+                                    break;
+                                }
 
-                                        break;
+                            case "BOOK MS":
+                                if (currentMSBuyLists <= 0 && counter > 35) {
+                                    to_exchange.println(("ADD 4 MS BUY " + ((Integer.parseInt(reply.substring(12, 16))) - 1) + " 2").toUpperCase());
+                                    System.out.println("Buying MS @ " + reply.substring(15, 19));
+                                    for (int x = 0; x < reply.length(); x++) {
+                                        if (reply.substring(x, x + 4).equalsIgnoreCase("sell")) {
+                                            to_exchange.println(("ADD 44 MS SELL " + (Integer.parseInt(reply.substring(x + 5, x + 9))) + " 2").toUpperCase());
+                                            System.out.println("Selling MS @ " + reply.substring(x + 5, x + 9));
+                                            break;
+                                        }
                                     }
-                            }
+
+                                    break;
+                                }
+                        }
+                    }
 
 
                             if (currentBondBuyLists <= 0 && counter > 35) {
