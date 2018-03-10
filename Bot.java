@@ -40,7 +40,6 @@ public class Bot
 
 
                 while ((reply = from_exchange.readLine()) != null) {
-                    System.err.printf("The exchange replied: %s\n", reply);
                     switch (reply.toUpperCase()) {
                         case "ACK 7":
                             currentBondBuyLists += 30;
