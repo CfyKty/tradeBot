@@ -45,11 +45,11 @@ public class Bot
 
                 System.err.printf("The exchange replied: %s\n", reply);
                 reply = from_exchange.readLine().trim();
-                if(currentBondBuyLists <= 0 && counter > 5)
+                if(currentBondBuyLists <= 0 && counter > 15)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
                 }
-                else if(currentBondSellLists <= 0 &&  counter > 5)
+                else if(currentBondSellLists <= 0 &&  counter > 15)
                 {
                     to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
                 }
