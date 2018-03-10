@@ -127,7 +127,7 @@ public class Bot
                             Thread.sleep(3000);
                             break;
                             default:
-                                if(reply.substring(0, 4).equalsIgnoreCase("BOOK")|| reply.substring(0, 4).equalsIgnoreCase("TRADE"))
+                                if(reply.substring(0, 4).equalsIgnoreCase("BOOK")|| reply.substring(0, 4).equalsIgnoreCase("TRAD"))
                                 {
 
                                 }
