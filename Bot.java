@@ -35,7 +35,7 @@ public class Bot
                 }
                 else
                 {
-                    to_exchange.println(("ADD 7 BOND BUY 998 50" ).toUpperCase());
+                    to_exchange.println(("ADD 7 BOND BUY 996 50" ).toUpperCase());
                     to_exchange.println(("ADD 77 BOND SELL 1002 50").toUpperCase());
                     counter = 0;
                 }
