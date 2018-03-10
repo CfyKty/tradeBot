@@ -38,7 +38,6 @@ public class Bot
             int currentGSSellLists =0;
             int currentMSBuyLists =0;
             int currentMSSellLists =0;
-            boolean VALBZ =false;
 
 
                 while ((reply = from_exchange.readLine()) != null) {
@@ -94,7 +93,6 @@ public class Bot
                             if (totalVALE >= 10) {
                                 to_exchange.println(("CONVERT 10 VALE SELL 10").toUpperCase());
                                 System.out.println("Converting Vale");
-                                VALBZ =true;
                             }
                             break;
 
@@ -152,12 +150,11 @@ public class Bot
 
                             switch (reply.toUpperCase().substring(0, 10)) {
                                 case "BOOK VALBZ":
-                                    if (VALBZ) {
+
                                         to_exchange.println(("ADD 2 VALBZ SELL " + (Integer.parseInt(reply.substring(15, 19))) + " 10").toUpperCase());
                                         System.out.println("Selling VLABZ!!! @ "+reply.substring(15, 19));
-                                        VALBZ = false;
 
-                                    }}
+                                    }
 
                             switch (reply.toUpperCase().substring(0, 7)) {
                                 case "BOOK GS":
